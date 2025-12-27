@@ -405,8 +405,26 @@ function renderResults(dpsResults, GlobalStats, numSimulations, MaxTime) {
     tbody.innerHTML = ""; // Clear
 
     function addRow(label, dmg, total) {
-        var pct = (total > 0) ? (dmg / total * 100).toFixed(1) + "%" : "0%";
-        var row = `<tr><td>${label}</td><td>${Math.floor(dmg).toLocaleString()}</td><td>${pct}</td></tr>`;
+        var rawPct = (total > 0) ? (dmg / total * 100) : 0;
+        var pctStr = rawPct.toFixed(1) + "%";
+        var barWidth = rawPct.toFixed(1) + "%";
+        
+        // Farbe je nach Zauberart (Optionaler Bonus)
+        var barColor = "var(--druid-orange)";
+        if(label.includes("Starfire") || label.includes("Moonfire") || label.includes("Arcane")) barColor = "var(--arcane-blue)";
+        if(label.includes("Wrath") || label.includes("Insect") || label.includes("Nature")) barColor = "var(--nature-green)";
+
+        var row = `
+            <tr>
+                <td class="text-left" style="font-weight:500">${label}</td>
+                <td class="text-right" style="color:#fff">${Math.floor(dmg).toLocaleString()}</td>
+                <td class="text-right" style="color:var(--text-muted)">${pctStr}</td>
+                <td class="bar-col">
+                    <div class="bar-bg">
+                        <div class="bar-fill" style="width: ${barWidth}; background-color: ${barColor}"></div>
+                    </div>
+                </td>
+            </tr>`;
         tbody.innerHTML += row;
     }
 

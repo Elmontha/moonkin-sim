@@ -4,139 +4,241 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Turtle WoW Moonkin Simulator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <div class="background-orb"></div>
+    
     <div class="container">
-        <h1>🌙 Turtle WoW Moonkin Sim</h1>
+        <header>
+            <div class="logo-area">
+                <span class="icon">🦉</span>
+                <h1>Moonkin<span>Sim</span></h1>
+            </div>
+            <p class="subtitle">Turtle WoW Theorycrafting Tool</p>
+        </header>
 
         <div class="grid-container">
             <div class="card">
-                <h2>General Settings</h2>
-                <div class="input-group">
-                    <label>Kampfdauer (Sek):</label>
-                    <input type="number" id="maxTime" value="120">
+                <div class="card-header">
+                    <h2>⚙️ General</h2>
                 </div>
-                <div class="input-group">
-                    <label>Simulationen (Anzahl):</label>
-                    <input type="number" id="simCount" value="1000">
-                </div>
-                <div class="input-group">
-                    <label>Modus:</label>
-                    <select id="calcMethod">
-                        <option value="S">Stochastisch (Zufall)</option>
-                        <option value="D">Deterministisch (Fest)</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>Player Stats</h2>
-                <div class="input-group">
-                    <label>Hit Chance (%):</label>
-                    <input type="number" id="statHit" value="98" step="0.1">
-                </div>
-                <div class="input-group">
-                    <label>Crit Chance (%):</label>
-                    <input type="number" id="statCrit" value="30" step="0.1">
-                </div>
-                <div class="input-group">
-                    <label>Haste (%):</label>
-                    <input type="number" id="statHaste" value="0" step="0.1">
+                <div class="card-body">
+                    <div class="input-group">
+                        <label>Kampfdauer (s)</label>
+                        <input type="number" id="maxTime" value="120">
+                    </div>
+                    <div class="input-group">
+                        <label>Simulationen</label>
+                        <input type="number" id="simCount" value="1000">
+                    </div>
+                    <div class="input-group">
+                        <label>Modus</label>
+                        <div class="select-wrapper">
+                            <select id="calcMethod">
+                                <option value="S">Stochastisch (Zufall)</option>
+                                <option value="D">Deterministisch (Fest)</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="card">
-                <h2>Spell Values (Avg Dmg)</h2>
-                <small>Bitte Durchschnittsschaden (inkl. SP) eintragen</small>
-                <div class="input-group">
-                    <label>Wrath (Cast/Dmg):</label>
-                    <input type="number" id="w_cast" value="1.5" step="0.1" style="width:50px">
-                    <input type="number" id="w_dmg" value="500">
+                <div class="card-header">
+                    <h2>📊 Stats</h2>
                 </div>
-                <div class="input-group">
-                    <label>Starfire (Cast/Dmg):</label>
-                    <input type="number" id="sf_cast" value="3.0" step="0.1" style="width:50px">
-                    <input type="number" id="sf_dmg" value="1000">
+                <div class="card-body">
+                    <div class="input-group">
+                        <label>Hit Chance (%)</label>
+                        <input type="number" id="statHit" value="98" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label>Crit Chance (%)</label>
+                        <input type="number" id="statCrit" value="30" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label>Haste (%)</label>
+                        <input type="number" id="statHaste" value="0" step="0.1">
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label>Moonfire (Hit/Tick):</label>
-                    <input type="number" id="mf_hit" value="300">
-                    <input type="number" id="mf_tick" value="100">
+            </div>
+
+            <div class="card full-width-mobile">
+                <div class="card-header">
+                    <h2>🔥 Spells (Avg Dmg)</h2>
                 </div>
-                <div class="input-group">
-                    <label>Insect Swarm (Tick):</label>
-                    <input type="number" id="is_tick" value="150">
+                <div class="card-body">
+                    <div class="spell-row">
+                        <label>Wrath</label>
+                        <div class="multi-input">
+                            <input type="number" id="w_cast" value="1.5" step="0.1" placeholder="Cast">
+                            <span class="unit">sec</span>
+                            <input type="number" id="w_dmg" value="500" placeholder="Dmg">
+                            <span class="unit">dmg</span>
+                        </div>
+                    </div>
+                    <div class="spell-row">
+                        <label>Starfire</label>
+                        <div class="multi-input">
+                            <input type="number" id="sf_cast" value="3.0" step="0.1" placeholder="Cast">
+                            <span class="unit">sec</span>
+                            <input type="number" id="sf_dmg" value="1000" placeholder="Dmg">
+                            <span class="unit">dmg</span>
+                        </div>
+                    </div>
+                    <div class="spell-row">
+                        <label>Moonfire</label>
+                        <div class="multi-input">
+                            <input type="number" id="mf_hit" value="300" placeholder="Direct">
+                            <span class="unit">hit</span>
+                            <input type="number" id="mf_tick" value="100" placeholder="Tick">
+                            <span class="unit">tick</span>
+                        </div>
+                    </div>
+                    <div class="spell-row">
+                        <label>Insect Swarm</label>
+                        <div class="multi-input">
+                            <input type="number" id="is_tick" value="150" placeholder="Tick">
+                            <span class="unit">tick</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="card">
-                <h2>Rotation</h2>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="rota_is" checked> <label for="rota_is">Cast Insect Swarm</label>
+                <div class="card-header">
+                    <h2>🔄 Rotation</h2>
                 </div>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="rota_mf" checked> <label for="rota_mf">Cast Moonfire</label>
-                </div>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="rota_eclDot" checked> <label for="rota_eclDot">Snapshot DoTs at Eclipse end</label>
-                </div>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="rota_interrupt" checked> <label for="rota_interrupt">Interrupt on wrong Eclipse</label>
+                <div class="card-body">
+                    <label class="toggle">
+                        <input type="checkbox" id="rota_is" checked>
+                        <span class="slider"></span>
+                        <span class="label-text">Cast Insect Swarm</span>
+                    </label>
+                    <label class="toggle">
+                        <input type="checkbox" id="rota_mf" checked>
+                        <span class="slider"></span>
+                        <span class="label-text">Cast Moonfire</span>
+                    </label>
+                    <label class="toggle">
+                        <input type="checkbox" id="rota_eclDot" checked>
+                        <span class="slider"></span>
+                        <span class="label-text">Snapshot at Ecl End</span>
+                    </label>
+                    <label class="toggle">
+                        <input type="checkbox" id="rota_interrupt" checked>
+                        <span class="slider"></span>
+                        <span class="label-text">Interrupt wrong Cast</span>
+                    </label>
                 </div>
             </div>
 
             <div class="card full-width">
-                <h2>Gear & Sets</h2>
-                <div class="checkbox-grid">
-                    <div><input type="checkbox" id="t3_4p" checked> <label for="t3_4p">T3 4p (MF/IS Duration)</label></div>
-                    <div><input type="checkbox" id="t3_6p" checked> <label for="t3_6p">T3 6p (Proc Dmg)</label></div>
-                    <div><input type="checkbox" id="t3_8p" checked> <label for="t3_8p">T3 8p (Haste Proc)</label></div>
-                    <div><input type="checkbox" id="t35_5p"> <label for="t35_5p">T3.5 5p (BoaT Bonus)</label></div>
-                    <div><input type="checkbox" id="idolEoF" checked> <label for="idolEoF">Idol Ebb & Flow (-0.2s SF)</label></div>
-                    <div><input type="checkbox" id="idolMoon" checked> <label for="idolMoon">Idol of the Moon (+17% MF)</label></div>
-                    <div><input type="checkbox" id="idolProp"> <label for="idolProp">Idol of Propagation (+17% IS)</label></div>
+                <div class="card-header">
+                    <h2>🛡️ Gear & Sets</h2>
+                </div>
+                <div class="card-body checkbox-grid">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="t3_4p" checked>
+                        <span class="checkmark"></span>
+                        T3 4p (Duration)
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="t3_6p" checked>
+                        <span class="checkmark"></span>
+                        T3 6p (Proc Dmg)
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="t3_8p" checked>
+                        <span class="checkmark"></span>
+                        T3 8p (Haste)
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="t35_5p">
+                        <span class="checkmark"></span>
+                        T3.5 5p (BoaT Bonus)
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="idolEoF" checked>
+                        <span class="checkmark"></span>
+                        Idol: Ebb & Flow
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="idolMoon" checked>
+                        <span class="checkmark"></span>
+                        Idol: Moon
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="idolProp">
+                        <span class="checkmark"></span>
+                        Idol: Propagation
+                    </label>
                 </div>
             </div>
         </div>
 
-        <button id="btnRun" onclick="runSimulation()">Start Simulation</button>
+        <div class="action-area">
+            <button id="btnRun" onclick="runSimulation()">
+                <span class="btn-icon">⚡</span> Simulation Starten
+            </button>
+        </div>
 
         <div id="resultsArea" class="hidden">
-            <h2>Ergebnisse</h2>
+            <div class="results-header">
+                <h2>Ergebnisse</h2>
+                <div class="badge">DPS REPORT</div>
+            </div>
+            
             <div class="stats-grid">
-                <div class="stat-box">
-                    <h3>DPS (Avg)</h3>
+                <div class="stat-box primary">
+                    <h3>Average DPS</h3>
                     <span id="out_dps_avg" class="big-number">-</span>
                 </div>
                 <div class="stat-box">
-                    <h3>Min / Max DPS</h3>
-                    <span id="out_dps_minmax">-</span>
+                    <h3>Min / Max</h3>
+                    <span id="out_dps_minmax" class="med-number">-</span>
                 </div>
                 <div class="stat-box">
-                    <h3>Total Dmg</h3>
-                    <span id="out_total_dmg">-</span>
+                    <h3>Total Damage</h3>
+                    <span id="out_total_dmg" class="med-number">-</span>
                 </div>
             </div>
 
-            <table class="result-table">
-                <thead>
-                    <tr>
-                        <th>Source</th>
-                        <th>Damage</th>
-                        <th>%</th>
-                    </tr>
-                </thead>
-                <tbody id="tbl_body">
-                    </tbody>
-            </table>
+            <div class="table-wrapper">
+                <table class="result-table">
+                    <thead>
+                        <tr>
+                            <th class="text-left">Source</th>
+                            <th class="text-right">Damage</th>
+                            <th class="text-right">%</th>
+                            <th class="bar-col">Distribution</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbl_body">
+                        </tbody>
+                </table>
+            </div>
             
-            <div class="uptime-box">
-                <p>Nature Eclipse Uptime: <span id="out_up_ne">0%</span></p>
-                <p>Arcane Eclipse Uptime: <span id="out_up_ae">0%</span></p>
+            <div class="uptime-grid">
+                <div class="uptime-box nature">
+                    <span class="label">Nature Eclipse</span>
+                    <span class="value" id="out_up_ne">0%</span>
+                </div>
+                <div class="uptime-box arcane">
+                    <span class="label">Arcane Eclipse</span>
+                    <span class="value" id="out_up_ae">0%</span>
+                </div>
             </div>
         </div>
+        
+        <footer>
+            <p>Built for Turtle WoW 🐢 | Moonkin Simulation</p>
+        </footer>
     </div>
 
     <script src="script.js"></script>
